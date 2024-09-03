@@ -10,7 +10,7 @@ var j = 0;
 var currentPhrase = [];
 var isDeleting = false;
 var isEnd = false;
-var txt = ['Unlike the odyssey there are no cyclops here - just some cool projects.', 'No sirens or mythical beasts included...unless you count the occasional coding bug.', 'No more Ulysses-Odyssey jokes. A Joyce-ful journey awaits.', 'Did you get that? James Joyce, lol.'];
+var txt = ['Ulysses had a Trojan Horse. I\'ve got Trojan-free code. Close enough, right?', 'No sirens or mythical beasts included...unless you count the occasional coding bug.', 'No more Ulysses-Odyssey jokes. A Joyce-ful journey awaits.', 'Did you get that? James Joyce, lol.'];
 
 function loop() {
     isEnd = false;
