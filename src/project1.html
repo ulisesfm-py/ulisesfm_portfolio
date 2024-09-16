@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="sr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="assets/spacesuit.ico" />
+    <title>Project 1: Unet Model for Land Image Segmentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="styles.scss" />
+    <script defer src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>
+        /* Custom styles for the project page */
+
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            /* Ensures text is left-aligned but centered as a block */
+        }
+
+        .content-wrapper h3 {
+            margin-top: 40px;
+            font-size: 1.75em;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .content-wrapper img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-wrapper p {
+            margin-top: 20px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top"></div>
+
+    <!-- **** Header Section **** -->
+    <section id="hero" class="jumbotron">
+        <div class="container">
+            <h1 class="hero-title load-hidden">
+                Unet Model for Land Image Segmentation
+            </h1>
+        </div>
+    </section>
+    <!-- /END Header Section -->
+
+    <!-- **** Blog Content Section **** -->
+    <section id="blog-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2 class="section-title load-hidden">Project Overview</h2>
+
+                <p class="about-wrapper__info-text">
+                    Land segmentation from aerial imagery is a challenging problem in remote sensing and computer
+                    vision, requiring accurate classification of different land use types such as water, land, roads,
+                    buildings, and vegetation. In this project, I explored three different models — a U-Net neural
+                    network, a Logistic Regression model, and a Random Forest Classifier — for segmenting land use from
+                    aerial images. The dataset used was sourced from Kaggle, consisting of labeled aerial images for
+                    semantic segmentation tasks. The objective was to evaluate the performance of deep learning against
+                    traditional machine learning models for this classification problem.
+                </p>
+
+                <h3>Data Preparation and Preprocessing</h3>
+                <p class="about-wrapper__info-text">
+                    The dataset consisted of high-resolution aerial images, each paired with a corresponding mask image
+                    that denotes different land use types using color codes. To make the data suitable for training the
+                    models, the following steps were performed: image resizing, data augmentation, class balancing, and
+                    mask conversion.
+                </p>
+
+                <!-- Placeholder for dataset images -->
+                <img src="assets/dataset_real_mask.png" alt="Dataset Real and Mask Image" />
+
+                <h3>Model Development and Training</h3>
+                <h4>U-Net Model</h4>
+                <p class="about-wrapper__info-text">
+                    The U-Net architecture is widely used for semantic segmentation tasks in deep learning. In this
+                    project, the U-Net model was trained using a custom loss function — Categorical Focal Loss — which
+                    focuses on difficult-to-classify pixels. The model was optimized using the Adam optimizer and
+                    trained for 50 epochs on a GPU to leverage accelerated computing power.
+                </p>
+
+                <!-- Placeholder for U-Net prediction image -->
+                <img src="assets/unet_prediction.png" alt="U-Net Prediction Image" />
+
+                <h4>Logistic Regression Model</h4>
+                <p class="about-wrapper__info-text">
+                    Logistic Regression is a simple yet powerful machine learning algorithm commonly used for binary
+                    classification tasks. For the purpose of pixel-wise multi-class classification in this project, the
+                    RGB values of each pixel were used as features, and the corresponding class label was the target
+                    variable.
+                </p>
+
+                <!-- Placeholder for Logistic Regression prediction image -->
+                <img src="assets/logistic_regression_prediction.png" alt="Logistic Regression Prediction Image" />
+
+                <h4>Random Forest Classifier</h4>
+                <p class="about-wrapper__info-text">
+                    Random Forest is an ensemble learning method that constructs multiple decision trees during training
+                    and outputs the mode of the classes for classification tasks. Similar to the Logistic Regression
+                    model, the Random Forest Classifier was trained using pixel data.
+                </p>
+
+                <!-- Placeholder for Random Forest prediction image -->
+                <img src="assets/random_forest_prediction.png" alt="Random Forest Prediction Image" />
+
+                <h3>Results and Performance Comparison</h3>
+                <p class="about-wrapper__info-text">
+                    The performance of the three models was evaluated using accuracy, precision, recall, and F1-score
+                    metrics. The U-Net model, owing to its deep learning architecture, excelled in capturing complex
+                    spatial dependencies and provided the highest overall accuracy. However, the Logistic Regression and
+                    Random Forest models, while computationally less expensive, also delivered respectable results for
+                    simpler segmentation tasks.
+                </p>
+
+                <!-- Placeholder for Confusion Matrix -->
+                <img src="assets/confusion_matrix.png" alt="Confusion Matrix" />
+
+                <h3>Conclusion</h3>
+                <p class="about-wrapper__info-text">
+                    This project successfully demonstrated the capabilities and limitations of both deep learning
+                    (U-Net) and traditional machine learning (Logistic Regression, Random Forest) methods for land
+                    segmentation classification. While the U-Net model provided superior accuracy, the machine learning
+                    models offered simpler and faster alternatives with reasonable performance.
+                </p>
+
+                <h3>Future Work</h3>
+                <p class="about-wrapper__info-text">
+                    Future directions for this project could include experimenting with more advanced deep learning
+                    models like DeepLabV3+ or incorporating transfer learning techniques.
+                </p>
+
+                <!-- Buttons to GitHub and Back to Projects Page -->
+                <span class="d-flex mt-3">
+                    <a rel="noreferrer" target="_blank" class="cta-btn cta-btn--hero"
+                        href="https://github.com/ulisesfm-py/Land-Segmentation/blob/main/land_segmentation_unet.ipynb">
+                        See on GitHub
+                    </a>
+                    <a rel="noreferrer" target="_blank" class="cta-btn text-color-main" href="index.html#projects">
+                        Back to Projects
+                    </a>
+                </span>
+            </div>
+        </div>
+    </section>
+    <!-- /END Blog Content Section -->
+
+    <!-- **** Footer Section **** -->
+    <footer class="footer navbar-static-bottom">
+        <div class="container">
+            <a rel="noreferrer" href="#top" class="back-to-top">
+                <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
+            </a>
+            <div class="social-links">
+                <a rel="noreferrer" href="#!" target="_blank">
+                    <i class="fa fa-twitter fa-inverse"></i>
+                </a>
+                <a rel="noreferrer" href="#!" target="_blank">
+                    <i class="fa fa-linkedin fa-inverse"></i>
+                </a>
+                <a rel="noreferrer" href="#!" target="_blank">
+                    <i class="fa fa-github fa-inverse"></i>
+                </a>
+            </div>
+
+            <hr />
+
+            <p class="footer__text">
+                © 2024 Ulises Fernández. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <!-- /END Footer Section -->
+
+    <script defer type="module" src="index.js"></script>
+</body>
+
+</html>
