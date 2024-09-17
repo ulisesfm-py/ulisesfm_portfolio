@@ -14,7 +14,7 @@
         /* Custom styles for the project page */
 
         .content-wrapper {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             text-align: left;
@@ -41,7 +41,7 @@
         .content-wrapper p {
             margin-top: 20px;
             line-height: 1.6;
-            font-size: 1.1em;
+            font-size: 1.2em;
         }
     </style>
 </head>
@@ -79,12 +79,31 @@
                 <p class="about-wrapper__info-text">
                     The dataset consisted of high-resolution aerial images, each paired with a corresponding mask image
                     that denotes different land use types using color codes. To make the data suitable for training the
-                    models, the following steps were performed: image resizing, data augmentation, class balancing, and
-                    mask conversion.
+                    models, the following steps were performed: <strong>image resizing, data augmentation, class
+                        balancing, and
+                        mask conversion.</strong>
                 </p>
 
                 <!-- Placeholder for dataset images -->
                 <img src="assets/dataset_real_mask.png" alt="Dataset Real and Mask Image" />
+
+                <p class="about-wrapper__info-text">
+                    Input images from the dataset have different resolutions, so I cropped them into multiple 256 x 256
+                    pixel images. This way, all trained images and predictions would have the same size. Then, it was
+                    possible to convert those images into arrays
+                    of size <strong>(n, img_height, img_width, channels)</strong>. In this case, n is the number of
+                    images
+                    in the dataset after cropping, img_height and img_width are 256 pixels each, and channels is 3 for
+                    RGB
+                    and 1 if they are in gray-scale.
+                </p>
+
+                <p class="about-wrapper__info-text">
+                    After resizing and cropping the images, we extracted the unique colors from the masks to identify
+                    the different classes (e.g., water, land, roads, etc.) present in the dataset. A dictionary mapping
+                    RGB values to class labels was created, which facilitated converting the RGB masks to categorical
+                    labels necessary for model training.
+                </p>
 
                 <h3>Model Development and Training</h3>
                 <h4>U-Net Model</h4>
@@ -93,6 +112,13 @@
                     project, the U-Net model was trained using a custom loss function — Categorical Focal Loss — which
                     focuses on difficult-to-classify pixels. The model was optimized using the Adam optimizer and
                     trained for 50 epochs on a GPU to leverage accelerated computing power.
+                </p>
+
+                <p class="about-wrapper__info-text">
+                    To handle the class imbalance issue, class weights were computed and used during training. These
+                    weights help the model to focus more on less frequent classes. Data augmentation techniques such as
+                    rotation, flipping, and zooming were also applied to increase the diversity of training data and
+                    prevent overfitting.
                 </p>
 
                 <!-- Placeholder for U-Net prediction image -->
@@ -106,6 +132,13 @@
                     variable.
                 </p>
 
+                <p class="about-wrapper__info-text">
+                    Before training, we created a pixel-wise dataset where each pixel in the image was treated as an
+                    independent sample. The RGB values served as input features, and the corresponding pixel class was
+                    the target. A logistic regression model was then trained using balanced class weights to address the
+                    class imbalance issue.
+                </p>
+
                 <!-- Placeholder for Logistic Regression prediction image -->
                 <img src="assets/logistic_regression_prediction.png" alt="Logistic Regression Prediction Image" />
 
@@ -114,6 +147,13 @@
                     Random Forest is an ensemble learning method that constructs multiple decision trees during training
                     and outputs the mode of the classes for classification tasks. Similar to the Logistic Regression
                     model, the Random Forest Classifier was trained using pixel data.
+                </p>
+
+                <p class="about-wrapper__info-text">
+                    The Random Forest Classifier was trained using the same pixel-wise dataset created for the Logistic
+                    Regression model. It is robust to overfitting and can capture feature interactions better, leading
+                    to improved performance over logistic regression in many cases. The results from this model were
+                    compared against those from the U-Net model.
                 </p>
 
                 <!-- Placeholder for Random Forest prediction image -->
@@ -126,6 +166,13 @@
                     spatial dependencies and provided the highest overall accuracy. However, the Logistic Regression and
                     Random Forest models, while computationally less expensive, also delivered respectable results for
                     simpler segmentation tasks.
+                </p>
+
+                <p class="about-wrapper__info-text">
+                    The confusion matrices for all three models were plotted to analyze the misclassification patterns.
+                    The U-Net model showed fewer misclassifications, particularly for overlapping classes like 'road'
+                    and 'building', compared to the other models. The logistic regression and random forest classifiers
+                    were simpler models but still provided reasonable accuracy given their computational simplicity.
                 </p>
 
                 <!-- Placeholder for Confusion Matrix -->
@@ -142,7 +189,9 @@
                 <h3>Future Work</h3>
                 <p class="about-wrapper__info-text">
                     Future directions for this project could include experimenting with more advanced deep learning
-                    models like DeepLabV3+ or incorporating transfer learning techniques.
+                    models like DeepLabV3+ or incorporating transfer learning techniques. Additional work can be done to
+                    optimize the training process, such as hyperparameter tuning, or to try other loss functions like
+                    Dice Loss for better segmentation performance.
                 </p>
 
                 <!-- Buttons to GitHub and Back to Projects Page -->

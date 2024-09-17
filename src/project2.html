@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" class="sr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="assets/spacesuit.ico" />
+    <title>Project 2: Bulldozer Exploratory Data Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="styles.scss" />
+    <script defer src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>
+        /* Custom styles for the project page */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .content-wrapper h3 {
+            margin-top: 40px;
+            font-size: 1.75em;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .content-wrapper img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-wrapper p {
+            margin-top: 20px;
+            line-height: 1.6;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top"></div>
+
+    <!-- **** Header Section **** -->
+    <section id="hero" class="jumbotron">
+        <div class="container">
+            <h1 class="hero-title load-hidden">
+                Bulldozer Exploratory Data Analysis
+            </h1>
+        </div>
+    </section>
+    <!-- /END Header Section -->
+
+    <!-- **** Blog Content Section **** -->
+    <section id="blog-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2 class="section-title load-hidden">Project Overview</h2>
+                <p class="about-wrapper__info-text">
+                    This project involves exploring the Bulldozer Bluebook dataset to predict future sale prices of
+                    bulldozers based on their historical sales data. The dataset, sourced from Kaggle, includes various
+                    characteristics of bulldozers and their sale prices, making it a time series regression problem. The
+                    goal is to build a predictive model using machine learning techniques like Random Forest Regression.
+                </p>
+
+                <h3>Data Preparation and Preprocessing</h3>
+                <p class="about-wrapper__info-text">
+                    The dataset contains three main parts: training, validation, and test sets, which are divided based
+                    on time frames. We focused on cleaning the data, handling missing values, and converting categorical
+                    variables into numerical ones. Exploratory Data Analysis (EDA) was performed to understand the
+                    distribution of the data and the relationships between different features.
+                </p>
+                <!-- Placeholder for dataset images -->
+                <img src="assets/bulldozer_data_distribution.png" alt="Bulldozer Data Distribution" />
+
+                <h3>Model Development and Training</h3>
+                <p class="about-wrapper__info-text">
+                    A Random Forest Regressor was chosen as the primary model due to its robustness and ability to
+                    handle high-dimensional data. We performed hyperparameter tuning using RandomizedSearchCV to
+                    optimize the model's performance. The evaluation metric used for the project is Root Mean Squared
+                    Log Error (RMSLE), which is particularly suited for regression problems involving skewed target
+                    distributions.
+                </p>
+                <!-- Placeholder for model results image -->
+                <img src="assets/rf_feature_importance.png" alt="Random Forest Feature Importance" />
+
+                <h3>Results and Evaluation</h3>
+                <p class="about-wrapper__info-text">
+                    The final model achieved a RMSLE score of 0.2438 on the validation set, demonstrating good
+                    predictive performance. Feature importance analysis showed that attributes like 'YearMade',
+                    'MachineID', and 'ModelID' significantly impact the sale price prediction.
+                </p>
+                <!-- Placeholder for evaluation metrics image -->
+                <img src="assets/evaluation_metrics.png" alt="Evaluation Metrics" />
+
+                <h3>Conclusion</h3>
+                <p class="about-wrapper__info-text">
+                    This project highlights the effectiveness of machine learning in predicting complex, real-world
+                    regression problems. Further improvements could be made by experimenting with other models such as
+                    XGBoost or incorporating external economic factors that may affect bulldozer sales.
+                </p>
+
+                <!-- Buttons to GitHub and Back to Projects Page -->
+                <span class="d-flex mt-3">
+                    <a rel="noreferrer" target="_blank" class="cta-btn cta-btn--hero"
+                        href="https://github.com/ulisesfm-py/Bulldozer-Bluebook-Regression">
+                        See on GitHub
+                    </a>
+                    <a rel="noreferrer" target="_blank" class="cta-btn text-color-main" href="index.html#projects">
+                        Back to Projects
+                    </a>
+                </span>
+            </div>
+        </div>
+    </section>
+    <!-- /END Blog Content Section -->
+
+    <!-- **** Footer Section **** -->
+    <footer class="footer navbar-static-bottom">
+        <div class="container">
+            <a rel="noreferrer" href="#top" class="back-to-top">
+                <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
+            </a>
+            <div class="social-links">
+                <a rel="noreferrer" href="#!" target="_blank">
+                    <i class="fa fa-twitter fa-inverse"></i>
+                </a>
+                <a rel="noreferrer" href="#!" target="_blank">
+                    <i class="fa fa-linkedin fa-inverse"></i>
+                </a>
+                <a rel="noreferrer" href="#!" target="_blank">
+                    <i class="fa fa-github fa-inverse"></i>
+                </a>
+            </div>
+
+            <hr />
+            <p class="footer__text">
+                © 2024 Ulises Fernández. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <!-- /END Footer Section -->
+
+    <script defer type="module" src="index.js"></script>
+</body>
+
+</html>
