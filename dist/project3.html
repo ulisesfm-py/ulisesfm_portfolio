@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" class="sr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="/spacesuit.3b7dc923.ico">
+    <title>Project 3: Military Aircraft Classification with CNNs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/index.4a508c1d.css">
+    <script defer="" src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>.content-wrapper {
+  max-width: 1200px;
+  text-align: left;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content-wrapper h3 {
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  margin-top: 40px;
+  padding-bottom: 10px;
+  font-size: 2em;
+}
+
+.content-wrapper h4 {
+  color: #333;
+  margin-top: 30px;
+  padding-bottom: 10px;
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+.content-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+.content-wrapper p {
+  color: #444;
+  margin-top: 20px;
+  font-size: 1.6em;
+  line-height: 1.6;
+}
+
+code {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 1.6em;
+}
+
+</style>
+</head>
+
+<body>
+    <div id="top"></div>
+
+    <!-- **** Header Section **** -->
+    <section id="hero" class="jumbotron">
+        <div class="container">
+            <h1 class="hero-title load-hidden">
+                Military Aircraft Classification with CNNs
+            </h1>
+        </div>
+    </section>
+    <!-- /END Header Section -->
+
+    <!-- **** Blog Content Section **** -->
+    <section id="blog-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2 class="section-title load-hidden">Project Overview</h2>
+                <p class="about-wrapper__info-text">
+                    The objective of this project was to classify images of military aircraft into their respective
+                    models using deep learning techniques. I compared two state-of-the-art convolutional neural network
+                    (CNN) architectures:
+                </p>
+                <ul>
+                    <li><strong>EfficientNetB3:</strong> Known for its efficiency and accuracy with fewer parameters.
+                    </li>
+                    <li><strong>ResNet50:</strong> A deep residual network that mitigates the vanishing gradient
+                        problem.</li>
+                </ul>
+                <p class="about-wrapper__info-text">
+                    The dataset consisted of images categorized into various aircraft types, including fighters,
+                    bombers, transports, and unmanned aerial vehicles (UAVs). The goal was to build models capable of
+                    accurately identifying the aircraft model from an image, which has applications in defense analytics
+                    and aviation monitoring.
+                </p>
+
+                <h3>Data Preparation and Preprocessing</h3>
+                <p class="about-wrapper__info-text">
+                    Key steps in data handling included:</p>
+
+                <ul>
+                    <li><strong>Dataset Loading:</strong> Created functions to load images and labels from directories.
+                    </li>
+                    <li><strong>Data Reduction:</strong> Limited the number of samples per class to balance the dataset
+                        and reduce training time.</li>
+                    <li><strong>Image Augmentation:</strong> Applied transformations like horizontal flips to enhance
+                        model generalization.</li>
+                    <li><strong>Data Generators:</strong> Used TensorFlow's <code>ImageDataGenerator</code> for
+                        efficient batch processing.</li>
+                </ul>
+
+                <!-- Placeholder for sample images -->
+                <img src="/aircraft_detection.431d1a87.png" alt="Sample Images of Military Aircraft">
+
+                <p class="about-wrapper__info-text">
+                    I limited the maximum number of examples per label/class in the training dataset to 300. This was a
+                    decision made to reduce the computational time and avoid data imbalance, as there are some aircraft
+                    models that have lower example images in the training dataset.
+                </p>
+
+                <img src="/training_data_distribution.c5255b4e.png" alt="Training Data Class Distribution">
+
+                <h3>Model Development and Training</h3>
+
+                <h4>EfficientNetB3 Model</h4>
+                <p class="about-wrapper__info-text">
+                    The EfficientNetB3 model was chosen for its balance between accuracy and computational efficiency.
+                    Key features of the implementation included:
+                </p>
+                <ul>
+                    <li><strong>Preprocessing:</strong> Used the appropriate preprocessing function for EfficientNet.
+                    </li>
+                    <li><strong>Fine-tuning:</strong> Allowed the base model to be trainable to leverage pre-trained
+                        weights.</li>
+                    <li><strong>Regularization:</strong> Added dropout layers and regularizers to prevent overfitting.
+                    </li>
+                    <li><strong>Optimizer:</strong> Employed the Adamax optimizer with a custom learning rate schedule.
+                    </li>
+                </ul>
+
+
+                <h4>ResNet50 Model</h4>
+                <p class="about-wrapper__info-text">
+                    The ResNet50 model was implemented to compare its performance with EfficientNetB3. Highlights of
+                    this model included:
+                </p>
+                <ul>
+                    <li><strong>Residual Blocks:</strong> Utilized skip connections to enable training of deeper
+                        networks.</li>
+                    <li><strong>Customization:</strong> Added fully connected layers and dropout for classification.
+                    </li>
+                    <li><strong>Preprocessing:</strong> Applied ResNet-specific preprocessing functions.</li>
+                </ul>
+
+                <h3>Custom Callback Function</h3>
+                <p class="about-wrapper__info-text">
+                    To optimize training, I implemented a custom callback function that:
+                </p>
+                <ul>
+                    <li><strong>Dynamic Learning Rate Adjustment:</strong> Reduced the learning rate when the model
+                        plateaued.</li>
+                    <li><strong>Early Stopping:</strong> Halted training when no improvement was observed after a set
+                        number of epochs.</li>
+                    <li><strong>User Interaction:</strong> Allowed manual intervention to halt training based on
+                        performance metrics.</li>
+                </ul>
+                <p class="about-wrapper__info-text">
+                    This approach ensured efficient use of computational resources and prevented overfitting.
+                </p>
+
+                <img src="/efficientnet_history.7872324d.png" alt="EfficientNet Training History">
+                <img src="/resnet50_history.5fbb5f86.png" alt="ResNet50 Training History">
+
+                <h3>Results and Evaluation</h3>
+                <p class="about-wrapper__info-text">
+                    Both models were evaluated using the test dataset. The key metrics observed were:
+                </p>
+                <h4>EfficientNetB3 Model</h4>
+                <ul>
+                    <li><strong>Accuracy:</strong> Achieved an overall accuracy of 89%.</li>
+                    <li><strong>Precision, Recall, F1-Score:</strong> High scores across most classes, indicating
+                        reliable performance.</li>
+                </ul>
+                <!-- Placeholder for EfficientNet evaluation results -->
+                <img src="/efficientnet_evaluation.759f44b8.png" alt="EfficientNetB3 Evaluation Metrics">
+
+                <h4>ResNet50 Model</h4>
+                <ul>
+                    <li><strong>Accuracy:</strong> Achieved an overall accuracy of 81%.</li>
+                    <li><strong>Performance:</strong> Slightly lower metrics compared to EfficientNetB3, but still
+                        demonstrated strong classification ability.</li>
+                </ul>
+                <!-- Placeholder for ResNet50 evaluation results -->
+                <img src="/resnet50_evaluation.ca2f79cd.png" alt="ResNet50 Evaluation Metrics">
+
+                <p class="about-wrapper__info-text">
+                    The confusion matrices for both models showed that misclassifications were rare, having a clear view
+                    of the diagonal components and a few missclassifications, most of the times corresponding to low
+                    quality images or images with strange perspectives.
+                </p>
+
+                <img src="/efficientnet_confusion_matrix.cac580d8.png" alt="Efficient Confusion Matrix">
+                <img src="/resnet50_confusion_matrix.226f9d23.png" alt="ResNet50 Confusion Matrix">
+
+                <h3>Conclusion</h3>
+                <p class="about-wrapper__info-text">
+                    The EfficientNetB3 model outperformed the ResNet50 model in this classification task, likely due to
+                    its optimized architecture for balancing depth and width of the network. The project demonstrated
+                    the effectiveness of modern CNN architectures in image classification tasks involving multiple
+                    classes with subtle differences.
+                </p>
+
+                <img src="/efficientnet_predictions.e7eb68b9.png" alt="Predictions EfficientNet">
+
+                <h3>Future Work</h3>
+                <p class="about-wrapper__info-text">
+                    Future enhancements could include:
+                </p>
+                <ul>
+                    <li><strong>Data Expansion:</strong> Collecting more images to improve model generalization.</li>
+                    <li><strong>Ensemble Methods:</strong> Combining predictions from multiple models to boost accuracy.
+                    </li>
+                    <li><strong>Advanced Augmentation:</strong> Using techniques like Mixup or Cutout to further augment
+                        the training data.</li>
+                </ul>
+
+                <!-- Buttons to GitHub and Back to Projects Page -->
+                <div class="d-flex mt-5">
+                    <a rel="noreferrer" target="_blank" class="cta-btn cta-btn--hero" href="https://github.com/ulisesfm-py/Military-Aircraft-Classification">
+                        View on GitHub
+                    </a>
+                    <a rel="noreferrer" target="_blank" class="cta-btn text-color-main ml-3" href="/index.html#projects">
+                        Back to Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /END Blog Content Section -->
+
+    <!-- **** Footer Section **** -->
+    <footer class="footer navbar-static-bottom">
+        <div class="container">
+            <a rel="noreferrer" href="#top" class="back-to-top">
+                <i class="fa fa-angle-up fa-2x" aria-hidden="true"></i>
+            </a>
+            <div class="social-links">
+                <!-- Add your social media links here -->
+                <a rel="noreferrer" href="https://twitter.com/yourprofile" target="_blank">
+                    <i class="fa fa-twitter fa-inverse"></i>
+                </a>
+                <a rel="noreferrer" href="https://linkedin.com/in/yourprofile" target="_blank">
+                    <i class="fa fa-linkedin fa-inverse"></i>
+                </a>
+                <a rel="noreferrer" href="https://github.com/yourusername" target="_blank">
+                    <i class="fa fa-github fa-inverse"></i>
+                </a>
+            </div>
+
+            <hr>
+            <p class="footer__text">
+                © 2024 Ulises Fernández. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <!-- /END Footer Section -->
+
+    <script defer="" src="/index.975ef6c8.js"></script>
+</body>
+
+</html>
